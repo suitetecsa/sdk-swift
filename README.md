@@ -1,8 +1,8 @@
 # SuitEtecsaSdk
 Una librería para SuitETECSA escrita en Swift
 
-`SuitEtecsaSdk` es una herramienta diseñada para interactuar con los servicios de [ETECSA](https://www.etecsa.cu/). La librería utiliza técnicas de scrapping para acceder a los portales de [acceso a internet](https://secure.etecsa.net:8443/) y de [usuario](https://www.portal.nauta.cu/) de Nauta.
-Por ahora solo hay soporte para el portal cautivo ([el portal de acceso a internet](https://secure.etecsa.net:8443/)) poco a poco se ira a;adiendo la interaccion con mas portales, como: [el portal de usuario](https://www.portal.nauta.cu/) de Nauta, [el portal nauta](https://www.nauta.cu/) y [el portal de servicios en linea](https://www.tienda.etecsa.cu/).
+`SuitEtecsaSdk` es una herramienta diseñada para interactuar con los servicios de [ETECSA](https://www.etecsa.cu/). La librería utiliza técnicas de scraping para acceder a los portales de [acceso a internet](https://secure.etecsa.net:8443/) y de [usuario](https://www.portal.nauta.cu/) de Nauta.
+Por ahora, solo hay soporte para el portal cautivo ([el portal de acceso a internet](https://secure.etecsa.net:8443/)); poco a poco se irá añadiendo la interacción con más portales, como: [el portal de usuario](https://www.portal.nauta.cu/) de Nauta, [el portal Nauta](https://www.nauta.cu/) y [el portal de servicios en línea](https://www.tienda.etecsa.cu/).
 
 ## Funciones implementadas
 - [x] [Secure Etecsa](https://secure.etecsa.net:8443/)
@@ -20,21 +20,21 @@ Por ahora solo hay soporte para el portal cautivo ([el portal de acceso a intern
   
   - [ ] Recargar la cuenta.
   
-  - [ ] Transferir saldo a otra cuenta nauta.
+  - [ ] Transferir saldo a otra cuenta Nauta.
   
-  - [ ] Transferir saldo para pago de cuota (`solo para cuentas Nauta Hogar`).
+  - [ ] Transferir saldo para el pago de cuota (solo para cuentas Nauta Hogar).
   
   - [ ] Cambiar la contraseña de la cuenta de acceso.
   
   - [ ] Cambiar la contraseña de la cuenta de correo asociada.
   
-  - [ ] Obtener las conexiones realizadas en el periódo `año-mes` especificado.
+  - [ ] Obtener las conexiones realizadas en el período `año-mes` especificado.
   
-  - [ ] Obtener las recargas realizadas en el periódo `año-mes` especificado.
+  - [ ] Obtener las recargas realizadas en el período `año-mes` especificado.
   
-  - [ ] Obtener las transferencias realizadas en el periódo `año-mes` especificado.
+  - [ ] Obtener las transferencias realizadas en el período `año-mes` especificado.
   
-  - [ ] Obtener los pagos de cuotas realizados en el periódo `año-mes` especificado (`solo para cuentas Nauta Hogar`).
+  - [ ] Obtener los pagos de cuotas realizados en el período `año-mes` especificado (solo para cuentas Nauta Hogar).
      
      
 # Uso
@@ -46,44 +46,44 @@ dependencies: [
 ]
 ```
 
-Importal `SuitEtecsaSdk`
+Importa `SuitEtecsaSdk`
 
 ```swift
 import SuitEtecsaSdk
 ```
 
-Conectate a internet desde la wifi o Nauta Hogar
+Conéctate a internet desde la wifi o Nauta Hogar
 
 ```swift
 switch await ConnectApi.connect(username: "user.name@nauta.com.cu", password: "somePassword") {
-    case .failure(_): print("hubo un error")
+    case .failure(_): print("Hubo un error")
     case .success(let dataSession): print(dataSession)
 }
 ```
 
-Obten el tiempo restante de la cuenta (solo puede hacerce cuando ahy una conexion abierta y se posee los datos de la sesion).
+Obtén el tiempo restante de la cuenta (solo puede hacerse cuando hay una conexión abierta y se poseen los datos de la sesión).
 
 ```swift
 switch await ConnectApi.getLeftTime(dataSession) {
-    case .failure(_): print("hubo un error")
+    case .failure(_): print("Hubo un error")
     case .success(let time): print(time)
 }
 ```
 
-Desconectate de internet
+Desconéctate de internet
 
 ```swift
 switch await ConnectApi.disconnect(dataSession) {
-    case .failure(_): print("hubo un error")
-    case .success(_): print("Sesion cerrada!")
+    case .failure(_): print("Hubo un error")
+    case .success(_): print("Sesión cerrada!")
 }
 ```
 
-Obten la informacion de la cuenta
+Obtén la información de la cuenta
 
 ```swift
 switch await ConnectApi.getInfo(username: "user.name@nauta.com.cu", password: "somePassword") {
-    case .failure(_): print("hubo un error")
+    case .failure(_): print("Hubo un error")
     case .success(let accountInfo): print(accountInfo)
 }
 ```
