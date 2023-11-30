@@ -1,7 +1,7 @@
 # SuitEtecsaSdk
 Una librería para SuitETECSA escrita en Swift
 
-`SuitEtecsaSdk` es una herramienta diseñada para interactuar con los servicios de [ETECSA](https://www.etecsa.cu/). La librería utiliza técnicas de scrapping para acceder a los portales de [acceso a internet](https://secure.etecsa.net:8443/) y de [usuario](https://www.portal.nauta.cu/) de Nauta. Implementa funciones para todas las operaciones disponibles en ambos portales, y ofrece soporte para Nauta Hogar.
+`SuitEtecsaSdk` es una herramienta diseñada para interactuar con los servicios de [ETECSA](https://www.etecsa.cu/). La librería utiliza técnicas de scrapping para acceder a los portales de [acceso a internet](https://secure.etecsa.net:8443/) y de [usuario](https://www.portal.nauta.cu/) de Nauta.
 Por ahora solo hay soporte para el portal cautivo ([el portal de acceso a internet](https://secure.etecsa.net:8443/)) poco a poco se ira a;adiendo la interaccion con mas portales, como: [el portal de usuario](https://www.portal.nauta.cu/) de Nauta, [el portal nauta](https://www.nauta.cu/) y [el portal de servicios en linea](https://www.tienda.etecsa.cu/).
 
 ## Funciones implementadas
