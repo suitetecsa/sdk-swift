@@ -1,43 +1,12 @@
 # SuitEtecsaSdk
-Una librería para SuitETECSA escrita en Swift
+## Descripción
+`SuitEtecsaSdk` es una librería desarrollada en Swift, diseñada para facilitar la interacción con los servicios de la empresa de telecomunicaciones [ETECSA](https://www.etecsa.cu/).
 
-`SuitEtecsaSdk` es una herramienta diseñada para interactuar con los servicios de [ETECSA](https://www.etecsa.cu/). La librería utiliza técnicas de scraping para acceder a los portales de [acceso a internet](https://secure.etecsa.net:8443/) y de [usuario](https://www.portal.nauta.cu/) de Nauta.
-Por ahora, solo hay soporte para el portal cautivo ([el portal de acceso a internet](https://secure.etecsa.net:8443/)); poco a poco se irá añadiendo la interacción con más portales, como: [el portal de usuario](https://www.portal.nauta.cu/) de Nauta, [el portal Nauta](https://www.nauta.cu/) y [el portal de servicios en línea](https://www.tienda.etecsa.cu/).
-
-## Funciones implementadas
-- [x] [Secure Etecsa](https://secure.etecsa.net:8443/)
-  
-  - [x] Iniciar sesión.
-  - [x] Cerrar sesión.
-  - [x] Obtener el tiempo disponible en la cuenta.
-  - [x] Obtener la información de la cuenta.
-
-- [ ] [Portal de Usuario](https://www.portal.nauta.cu/)
-  
-  - [ ] Iniciar sesión.
-  
-  - [ ] Obtener información de la cuenta.
-  
-  - [ ] Recargar la cuenta.
-  
-  - [ ] Transferir saldo a otra cuenta Nauta.
-  
-  - [ ] Transferir saldo para el pago de cuota (solo para cuentas Nauta Hogar).
-  
-  - [ ] Cambiar la contraseña de la cuenta de acceso.
-  
-  - [ ] Cambiar la contraseña de la cuenta de correo asociada.
-  
-  - [ ] Obtener las conexiones realizadas en el período `año-mes` especificado.
-  
-  - [ ] Obtener las recargas realizadas en el período `año-mes` especificado.
-  
-  - [ ] Obtener las transferencias realizadas en el período `año-mes` especificado.
-  
-  - [ ] Obtener los pagos de cuotas realizados en el período `año-mes` especificado (solo para cuentas Nauta Hogar).
+## Características
+- **Scraping Avanzado**: Utiliza técnicas de scraping para acceder eficientemente a los portales de [acceso a internet](https://secure.etecsa.net:8443/) y de [usuario de Nauta](https://www.portal.nauta.cu/).
+- **Integración con API de Nauta**: Permite la interacción con el [portal Nauta](https://www.nauta.cu/) a través de su API, proporcionando un cliente robusto y fácil de usar.
      
-     
-# Uso
+## Instalación
 Importa `SuitEtecsaSdk` en tu proyecto
 
 ```swift
@@ -45,19 +14,14 @@ dependencies: [
     .package(url: "https://github.com/suitetecsa/sdk-swift/.git", from: "1.0.0-alpha01")
 ]
 ```
-
-Importa `SuitEtecsaSdk`
-
-```swift
-import SuitEtecsaSdk
-```
+## Uso
 
 Conéctate a internet desde la wifi o Nauta Hogar
 
 ```swift
 switch await ConnectApi.connect(username: "user.name@nauta.com.cu", password: "somePassword") {
-    case .failure(_): print("Hubo un error")
-    case .success(let dataSession): print(dataSession)
+case .failure(_): print("Hubo un error")
+case .success(let dataSession): print(dataSession)
 }
 ```
 
@@ -65,8 +29,8 @@ Obtén el tiempo restante de la cuenta (solo puede hacerse cuando hay una conexi
 
 ```swift
 switch await ConnectApi.getLeftTime(dataSession) {
-    case .failure(_): print("Hubo un error")
-    case .success(let time): print(time)
+case .failure(_): print("Hubo un error")
+case .success(let time): print(time)
 }
 ```
 
@@ -74,8 +38,8 @@ Desconéctate de internet
 
 ```swift
 switch await ConnectApi.disconnect(dataSession) {
-    case .failure(_): print("Hubo un error")
-    case .success(_): print("Sesión cerrada!")
+case .failure(_): print("Hubo un error")
+case .success(_): print("Sesión cerrada!")
 }
 ```
 
@@ -83,16 +47,39 @@ Obtén la información de la cuenta
 
 ```swift
 switch await ConnectApi.getInfo(username: "user.name@nauta.com.cu", password: "somePassword") {
-    case .failure(_): print("Hubo un error")
-    case .success(let accountInfo): print(accountInfo)
+case .failure(_): print("Hubo un error")
+case .success(let accountInfo): print(accountInfo)
 }
 ```
 
-# Contribución
+Obten la informacion necesaria para iniciar sesion en el portal Nauta
+
+```swift
+switch await NautaAuthApi.getCaptcha() {
+case .failure(_): print("Hubo un error")
+case .success(let cresp):
+print(cresp.idRequest)
+print(cresp.data)
+}
+```
+
+Inicia sesion en el portal Nauta
+
+```swift
+switch await NautaAuthApi.login(
+  username: "+5350000000", password: "somePassword", captchaCode: "CAPTCHACODE",
+  idRequest: cresp.idRequest)
+{
+case .failure(let err): throw err
+case .success(let lresp): print(lresp)
+}
+```
+
+## Contribución
 
 ¡Gracias por tu interés en colaborar con nuestro proyecto! Nos encanta recibir contribuciones de la comunidad y valoramos mucho tu tiempo y esfuerzo.
 
-## Cómo contribuir
+### Cómo contribuir
 
 Si estás interesado en contribuir, por favor sigue los siguientes pasos:
 
@@ -102,7 +89,7 @@ Si estás interesado en contribuir, por favor sigue los siguientes pasos:
 4. Cuando hayas terminado de trabajar en la tarea, crea un pull request explicando los cambios que has realizado y asegurándote de que el código cumple con nuestras directrices de estilo y calidad.
 5. Espera a que uno de nuestros colaboradores revise el pull request y lo apruebe o sugiera cambios adicionales.
 
-## Directrices de contribución
+### Directrices de contribución
 
 Por favor, asegúrate de seguir nuestras directrices de contribución para que podamos revisar y aprobar tus cambios de manera efectiva:
 

@@ -15,12 +15,13 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.6.4")),
         .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.6.0"),
+        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMajor(from: "1.7.2")),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .target(
-            name: "SuitEtecsaSdk", dependencies: ["Alamofire", "SwiftSoup"]),
+            name: "SuitEtecsaSdk", dependencies: ["Alamofire", "SwiftSoup", "CryptoSwift"]),
         .testTarget(
             name: "SuitEtecsaSdkTests",
             dependencies: ["SuitEtecsaSdk"]),
