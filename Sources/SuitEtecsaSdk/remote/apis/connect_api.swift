@@ -11,8 +11,6 @@ public class ConnectApi {
     switch await AF.request(route).serializingData().response.result {
     case .failure(let error): return Result.failure(error)
     case .success(let data):
-      //print(String(data: data, encoding: .utf8)!)
-
       return Result { try tranform(data) }
     }
   }
