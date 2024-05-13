@@ -1,4 +1,4 @@
-enum NautaException: Error {
+public enum NautaException: Error {
     case loginException(message: String)
     case getInformationException(message: String)
     case topUpException(message: String)
