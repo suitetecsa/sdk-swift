@@ -44,9 +44,9 @@ enum ConnectRouter: URLRequestConvertible {
       switch self {
       case .connect(_, let actionLogin): URL(string: actionLogin)
       default:
-        let base = URL(string: ConnectApp.Server.baseUrl)!
-        let baseAppend = base.appendingPathComponent(path).absoluteString.removingPercentEncoding
-        URL(string: baseAppend!)
+        URL(
+          string: URL(string: ConnectApp.Server.baseUrl)!.appendingPathComponent(path)
+            .absoluteString.removingPercentEncoding!)
       }
 
     var urlRequest = URLRequest(url: url!)
