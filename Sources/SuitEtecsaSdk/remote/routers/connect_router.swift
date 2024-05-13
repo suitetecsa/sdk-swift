@@ -18,9 +18,7 @@ enum ConnectRouter: URLRequestConvertible {
   private var path: String {
     switch self {
     case .initConnect: return "/"
-    case .connect(_, let actionLogin):
-    print(actionLogin)
-    return actionLogin
+    case .connect(_, let actionLogin): return actionLogin
     case .loadInformation: return "/EtecsaQueryServlet"
     case .disconnect(let params):
       var urlSuffix = ""
@@ -42,9 +40,14 @@ enum ConnectRouter: URLRequestConvertible {
   }
 
   func asURLRequest() throws -> URLRequest {
-    let base = URL(string: ConnectApp.Server.baseUrl)!
-    let baseAppend = base.appendingPathComponent(path).absoluteString.removingPercentEncoding
-	let url = URL(string: baseAppend!)
+    let url =
+      switch self {
+      case .connect(_, let actionLogin): URL(string: actionLogin)
+      default:
+        let base = URL(string: ConnectApp.Server.baseUrl)!
+        let baseAppend = base.appendingPathComponent(path).absoluteString.removingPercentEncoding
+        URL(string: baseAppend!)
+      }
 
     var urlRequest = URLRequest(url: url!)
 
