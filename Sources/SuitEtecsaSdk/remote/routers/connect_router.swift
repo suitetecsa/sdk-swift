@@ -18,7 +18,9 @@ enum ConnectRouter: URLRequestConvertible {
   private var path: String {
     switch self {
     case .initConnect: return "/"
-    case .connect(_, let actionLogin): return actionLogin
+    case .connect(_, let actionLogin):
+    print(actionLogin)
+    return actionLogin
     case .loadInformation: return "/EtecsaQueryServlet"
     case .disconnect(let params):
       var urlSuffix = ""

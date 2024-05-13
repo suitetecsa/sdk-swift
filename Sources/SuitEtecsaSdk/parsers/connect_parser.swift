@@ -30,6 +30,11 @@ class ConnectParser {
 
   static func parseAttributeUUID(content: Data) throws -> String {
     let html = String(data: content, encoding: .utf8)!
+
+    if let error = html.parseError() {
+      throw NautaException.loginException(message: error)
+    }
+
     let pattern = "ATTRIBUTE_UUID=(\\w+)&"
     let regex = try? NSRegularExpression(pattern: pattern)
     if let match = regex?.firstMatch(in: html, range: NSRange(html.startIndex..., in: html)),
@@ -38,7 +43,7 @@ class ConnectParser {
       let uuid = String(html[uuidRange])
       return uuid
     } else {
-      throw NautaException.getInformationException(message: "String")
+      throw NautaException.getInformationException(message: "Fail to parse attribute uuid")
     }
   }
 
