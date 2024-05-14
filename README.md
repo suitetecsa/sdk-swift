@@ -11,7 +11,7 @@ Importa `SuitEtecsaSdk` en tu proyecto
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/suitetecsa/sdk-swift/.git", from: "1.0.0-alpha02")
+    .package(url: "https://github.com/suitetecsa/sdk-swift/.git", from: "1.0.0-alpha03")
 ]
 ```
 ## Uso
