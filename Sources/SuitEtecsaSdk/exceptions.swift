@@ -4,5 +4,5 @@ public enum NautaException: Error {
     case topUpException(message: String)
     case transferException(message: String)
     case changePasswordException(message: String)
-    case genery(message: String)
+    case genery(error: Error)
 }

@@ -7,15 +7,24 @@ public class ConnectApi {
   private static func performAction<T>(
     route: ConnectRouter,
     tranform: (Data) throws -> T
-  ) async -> Result<T, Error> {
+  ) async -> Result<T, NautaException> {
     switch await AF.request(route).serializingData().response.result {
-    case .failure(let error): return Result.failure(error)
+    case .failure(let error): return Result.failure(NautaException.genery(error: error))
     case .success(let data):
-      return Result { try tranform(data) }
+      do {
+        let transformed = try tranform(data)
+        return Result.success(transformed)
+      } catch {
+        if error is NautaException {
+          return Result.failure(error as! NautaException)
+        } else {
+          return Result.failure(NautaException.genery(error: error))
+        }
+      }
     }
   }
 
-  public static func connect(username: String, password: String) async -> Result<DataSession, Error>
+  public static func connect(username: String, password: String) async -> Result<DataSession, NautaException>
   {
     switch await performAction(
       route: ConnectRouter.initConnect, tranform: ConnectParser.parseLoginForm)
@@ -43,7 +52,7 @@ public class ConnectApi {
   }
 
   public static func getInfo(username: String, password: String) async -> Result<
-    NautaConnectInformation, Error
+    NautaConnectInformation, NautaException
   > {
     switch await performAction(
       route: ConnectRouter.initConnect, tranform: ConnectParser.parseLoginForm)
@@ -63,7 +72,7 @@ public class ConnectApi {
     }
   }
 
-  public static func getLeftTime(dataSession: DataSession) async -> Result<String, Error> {
+  public static func getLeftTime(_ dataSession: DataSession) async -> Result<String, NautaException> {
     let parameters = [
       "op": "getLeftTime",
       "ATTRIBUTE_UUID": dataSession.attributeUUID,
@@ -76,7 +85,7 @@ public class ConnectApi {
     }
   }
 
-  public static func disconnect(dataSession: DataSession) async -> Result<Void, Error> {
+  public static func disconnect(_ dataSession: DataSession) async -> Result<Void, NautaException> {
     let parameters = [
       "username": dataSession.username,
       "wlanuserip": dataSession.wlanUserIp,
@@ -85,7 +94,7 @@ public class ConnectApi {
     ]
     return await performAction(route: ConnectRouter.disconnect(params: parameters)) { data in
       if !String(data: data, encoding: .utf8)!.contains("SUCCESS") {
-        throw NautaException.genery(message: "String")
+        throw NautaException.loginException(message: "Fail to logout")
       }
     }
   }

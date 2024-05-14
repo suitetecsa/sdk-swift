@@ -25,7 +25,7 @@ class ConnectParser {
       let url = try doc.attr("action")
       return (url, form)
     }
-    throw NautaException.genery(message: "Unknown error")
+    throw NautaException.getInformationException(message: "Fail to get information from login page")
   }
 
   static func parseAttributeUUID(content: Data) throws -> String {
@@ -82,6 +82,6 @@ class ConnectParser {
       return NautaConnectInformation(lastsConnections: lastsConnections, accountInfo: accountInfo)
     }
 
-    throw NautaException.getInformationException(message: "String")
+    throw NautaException.getInformationException(message: "Failt to get information from user")
   }
 }
