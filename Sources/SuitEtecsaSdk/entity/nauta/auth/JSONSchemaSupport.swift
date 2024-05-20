@@ -1,7 +1,5 @@
 import Foundation
 
-// MARK: - Helper functions for creating encoders and decoders
-
 func newJSONDecoder() -> JSONDecoder {
     let decoder = JSONDecoder()
     decoder.dateDecodingStrategy = .custom({ (decoder) -> Date in
