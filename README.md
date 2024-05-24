@@ -11,7 +11,7 @@ Importa `SuitEtecsaSdk` en tu proyecto
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/suitetecsa/sdk-swift/.git", from: "1.0.0-alpha01")
+    .package(url: "https://github.com/suitetecsa/sdk-swift/.git", from: "1.0.0-alpha04")
 ]
 ```
 ## Uso
@@ -20,8 +20,13 @@ Conéctate a internet desde la wifi o Nauta Hogar
 
 ```swift
 switch await ConnectApi.connect(username: "user.name@nauta.com.cu", password: "somePassword") {
-case .failure(_): print("Hubo un error")
-case .success(let dataSession): print(dataSession)
+case .success(let dataSession): saveDataSession(dataSession)
+case .failure(let exception):
+  switch exception {
+  case .failLogin(let message):
+    print("Error al iniciar sesion: \(message)")
+  default: break
+  }
 }
 ```
 
@@ -29,8 +34,14 @@ Obtén el tiempo restante de la cuenta (solo puede hacerse cuando hay una conexi
 
 ```swift
 switch await ConnectApi.getLeftTime(dataSession) {
-case .failure(_): print("Hubo un error")
-case .success(let time): print(time)
+case .success(let timeString):
+  print("Su tiempo restante es: \(timeString)")
+case .failure(let exception):
+  switch exception {
+  case .failFetchInformation(let message):
+    print("Error al obtener el tiempo restante de la cuenta: \(message)")
+  default: break
+  }
 }
 ```
 
@@ -38,8 +49,13 @@ Desconéctate de internet
 
 ```swift
 switch await ConnectApi.disconnect(dataSession) {
-case .failure(_): print("Hubo un error")
-case .success(_): print("Sesión cerrada!")
+case .success: print("sesion cerrada")
+case .failure(let exception):
+  switch exception {
+  case .failLogin(let message):
+    print("Error al cerrar sesion: \(message)")
+  default: break
+  }
 }
 ```
 
@@ -47,8 +63,14 @@ Obtén la información de la cuenta
 
 ```swift
 switch await ConnectApi.getInfo(username: "user.name@nauta.com.cu", password: "somePassword") {
-case .failure(_): print("Hubo un error")
-case .success(let accountInfo): print(accountInfo)
+case .success(let userInfo):
+  print("Su saldo es de: \(userInfo.accountInfo.credit)")
+case .failure(let exception):
+  switch exception {
+  case .failLogin(let message):
+    print("Error intentando obtener los datos de la cuenta: \(error.localizedDescription)")
+  default: break
+  }
 }
 ```
 
