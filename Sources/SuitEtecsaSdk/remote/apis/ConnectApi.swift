@@ -95,7 +95,7 @@ public class ConnectApi {
     return Result.success(userDetails)
   }
 
-  public static func getLeftTime(_ dataSession: DataSession) async -> Result<String, NautaException>
+  public static func getLeftTime(_ dataSession: DataSession) async -> Result<SessionTime, NautaException>
   {
     let parameters = [
       "op": "getLeftTime",
@@ -118,7 +118,7 @@ public class ConnectApi {
       return Result.failure(
         NautaException.failFetchInformation(message: "Fail to obtain remaining time!"))
     }
-    return Result.success(remainingTime)
+    return Result.success(SessionTime(value: remainingTime))
   }
 
   public static func disconnect(_ dataSession: DataSession) async -> Result<Void, NautaException> {
