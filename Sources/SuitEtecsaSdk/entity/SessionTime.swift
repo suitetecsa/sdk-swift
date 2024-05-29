@@ -5,14 +5,14 @@ public struct SessionTime {
     return value == "errorop"
   }
 
-  public var asSeconds: Int? {
+  public var asSeconds: Int {
+    guard !errorop else { return -1 }
     let components = value.split(separator: ":").compactMap { Int($0) }
-    return components.count == 3 ? components[0] * 3600 + components[1] * 60 + components[2] : nil
+    return components[0] * 3600 + components[1] * 60 + components[2]
   }
 
-  public var asMillis: Int? {
-    let components = value.split(separator: ":").compactMap { Int($0) }
-    return components.count == 3
-      ? ((components[0] * 3600 + components[1] * 60 + components[2]) * 1000) : nil
+  public var asMillis: Int {
+    let seconds = asSeconds
+    return seconds != -1 ? seconds * 1000 : seconds
   }
 }
