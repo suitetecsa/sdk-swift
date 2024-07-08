@@ -8,7 +8,6 @@ public class NautaAuthApi {
     route: NautaRouter,
     type: T.Type
   ) async -> DataResponse<T, AFError> {
-    print(await AF.request(route).serializingString().response)
     return await AF.request(route).serializingDecodable(type, decoder: JSONDecoder()).response
   }
 

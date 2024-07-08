@@ -32,7 +32,7 @@ enum NautaRouter: URLRequestConvertible {
 
   private var path: String {
     switch self {
-    case .getCaptcha: return "/captcha/captcha?"
+    case .getCaptcha: return "/captcha/captcha"
     case .login: return "/login"
     case .users: return "/users"
     case .consults: return "/consults"
