@@ -16,7 +16,6 @@ final class SuitEtecsaSdkTests: XCTestCase {
 
     if case .user(let decodedUser) = loginResponseJson.user {
       XCTAssertNotNil(decodedUser)
-      XCTAssertTrue(decodedUser is User)
       XCTAssertTrue(decodedUser.client.email == "pocl9812@gmail.com")
       XCTAssertTrue(decodedUser.client.operations.count == 4)
       XCTAssertTrue(decodedUser.navServices.count == 1)

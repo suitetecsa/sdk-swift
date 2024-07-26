@@ -23,7 +23,15 @@ public class NautaUserApi {
     ).result {
     case .failure(let error): return Result.failure(error)
     case .success(let data):
-      return Result.success(data.resp)
+      if case UserOrString.user(let user) = data.resp.user {
+        if user.updatedServices {
+          return Result.success(data.resp)
+        } else {
+          return await users(token: token, email: email, lastUpdate: user.lastUpdate)
+        }
+      } else {
+        return Result.failure(NautaException.failFetchInformation(message: data.resp.result))
+      }
     }
   }
 }
