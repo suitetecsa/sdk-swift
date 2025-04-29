@@ -22,6 +22,21 @@ public class ConnectApi {
     }
   }
 
+  public static func getConnectionInfo() async -> Result<DataSession, NautaException> {
+    log.info("Fetching info from: \(String(describing: ConnectRouter.initConnect.url))")
+    guard
+      let (_, dataMap) = try? await sendRequest(
+        ConnectRouter.initConnect, transform: ConnectParser.parseLoginForm)
+    else {
+      return Result.failure(
+        NautaException.failLogin(message: "Fail to load required information!"))
+    }
+    return Result.success(
+      DataSession(
+        username: "", csrfHw: dataMap["CSRFHW"]!, wlanUserIp: dataMap["wlanuserip"]!,
+        attributeUUID: "String"))
+  }
+
   public static func connect(username: String, password: String)
     async -> Result<DataSession, NautaException>
   {
@@ -95,8 +110,9 @@ public class ConnectApi {
     return Result.success(userDetails)
   }
 
-  public static func getLeftTime(_ dataSession: DataSession) async -> Result<SessionTime, NautaException>
-  {
+  public static func getLeftTime(_ dataSession: DataSession) async -> Result<
+    SessionTime, NautaException
+  > {
     let parameters = [
       "op": "getLeftTime",
       "ATTRIBUTE_UUID": dataSession.attributeUUID,
