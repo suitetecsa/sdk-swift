@@ -1,13 +1,13 @@
 import Foundation
 
-public struct MobilePlan: Codable {
-  public let data: String
-  public let type: String
-  public let expires: String
+public struct MobilePlan: Sendable, Codable {
+    public let data: String
+    public let type: String
+    public let expires: String
 
-  enum CodingKeys: String, CodingKey {
-    case data = "Datos"
-    case type = "tipo"
-    case expires = "Vence"
-  }
+    enum CodingKeys: String, CodingKey {
+        case data = "Datos"
+        case type = "tipo"
+        case expires = "Vence"
+    }
 }
