@@ -792,10 +792,9 @@ let loginResponse = """
     }
     """
 
-let loginResponseWithoutServices = """
+let userResponseWithoutServices = """
     {
         "resp": {
-            "token": "eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiIrNTM1NTYyNzU3OSIsImlhdCI6MTY5MDMyOTAwNCwiaXNzIjoiZ2VzTmF1dGFTZXJ2aWNlcyIsImV4cCI6MTY5MDMzMjYwNCwidXNlcl9pbmZvIjoie1wibGxwZGNcIjpcIjFlYTFjMzIzLWEyMzMtNGE1Zi1hNmIwLTU3NTk3ZWI3MTFlYlwiLFwiaWRlbnRpZmljYWNpb25cIjpcIjk4MTIxNjAyNDA2XCIsXCJ0aXBvSWRlbnRpZmljYWNpb25cIjpcIjFcIixcInBlcnNvbmFfaWRcIjpcIjFlYTFjMzIzLWEyMzMtNGE1Zi1hNmIwLTU3NTk3ZWI3MTFlYlwiLFwidXN1YXJpb19wb3J0YWxcIjpcIis1MzU1NjI3NTc5XCIsXCJub21icmVcIjpcInBlZHJvIG9tYXIgY2FzYWJlbGxhIGxlbXVzXCIsXCJjb3JyZW9cIjpcInBvY2w5ODEyQGdtYWlsLmNvbVwiLFwidGVsZWZvbm9cIjpcIjU1NjI3NTc5XCJ9In0.YjkZdhXHEyuH2CmCMMEmvDSFE8sh3HyhK55_4dD3UJwRj8g5sFLbE7_ktrpasS8k",
             "user": {
                 "cliente": {
                     "nombre": "pedro omar casabella lemus",
