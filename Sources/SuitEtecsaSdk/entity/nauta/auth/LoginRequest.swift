@@ -1,7 +1,7 @@
 import Foundation
 import Alamofire
 
-struct LoginRequest: Codable, Sendable {
+public struct LoginRequest: Codable, Sendable {
     let username, password, accountType, idRequest: String
     let captchatext: String
 
