@@ -22,7 +22,7 @@ struct DataResp: Codable, Sendable {
     }
 }
 
-public struct Datas: Codable, Sendable {
+struct Datas: Codable, Sendable {
     public let resultado: String 
 
     enum CodingKeys: String, CodingKey {
