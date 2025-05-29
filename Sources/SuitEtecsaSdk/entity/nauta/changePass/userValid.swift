@@ -1,7 +1,7 @@
 import Foundation
 
 struct UserValid: Codable, Sendable {
-    public var param: [Params]
+    public var param: [Param]
     public var idRequest: String 
     public var captchatext: String 
     public var data: DataResp 
