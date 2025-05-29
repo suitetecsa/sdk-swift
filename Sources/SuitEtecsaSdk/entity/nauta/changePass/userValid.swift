@@ -23,7 +23,7 @@ struct DataResp: Codable, Sendable {
 }
 
 struct Datas: Codable, Sendable {
-    public let resultado: String 
+    let resultado: String 
 
     enum CodingKeys: String, CodingKey {
         case resultado = "resultado"
