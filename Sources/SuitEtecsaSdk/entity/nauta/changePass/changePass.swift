@@ -1,6 +1,6 @@
 import Foundation 
 
-public struct ChangePass: Codable, Sendable {
+struct ChangePass: Codable, Sendable {
     public var param: [Param]
 
     enum CodingKeys: String, CodingKey {
