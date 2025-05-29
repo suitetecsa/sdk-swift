@@ -14,7 +14,7 @@ struct UserValid: Codable, Sendable {
     }
 }
 
-public struct DataResp: Codable, Sendable {
+struct DataResp: Codable, Sendable {
     public let data: Datas 
 
     enum CodingKeys: String, CodingKey {
