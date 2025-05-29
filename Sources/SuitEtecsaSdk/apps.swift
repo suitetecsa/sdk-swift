@@ -1,4 +1,3 @@
-import Foundation
 struct ConnectApp {
   struct Server {
     static let baseUrl = "https://\(connectDomain):8443"
