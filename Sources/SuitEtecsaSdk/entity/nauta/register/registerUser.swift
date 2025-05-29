@@ -1,7 +1,7 @@
 import Foundation
 
-public struct RegisterUser: Codable, Sendable {
-    public var param: [Paramsssss]
+struct RegisterUser: Codable, Sendable {
+    var param: [Param]
 
     enum CodingKeys: String, CodingKey {
         case param = "param"
