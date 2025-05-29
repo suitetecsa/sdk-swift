@@ -1,5 +1,3 @@
-import Foundation
-
 public enum Action {
     case Login
     case LoadUserInformation
