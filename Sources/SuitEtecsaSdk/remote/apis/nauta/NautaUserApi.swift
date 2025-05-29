@@ -3,17 +3,6 @@ import Foundation
 
 @available(iOS 13, OSX 10.15, watchOS 6, tvOS 13, *)
 public class NautaUserApi {
-
-    @discardableResult private static func performResponse<T: Codable>(
-        route: NautaRouter,
-        type: T.Type
-    ) async -> DataResponse<T, AFError> {
-        return await session.request(route)
-            .validate()
-            .serializingDecodable(type, decoder: JSONDecoder())
-            .response
-    }
-
     public static func users(token: String, email: String, lastUpdate: String) async -> Result<
         UserResponse, Error
     > {

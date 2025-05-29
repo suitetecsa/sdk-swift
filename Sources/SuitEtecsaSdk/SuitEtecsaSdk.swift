@@ -13,6 +13,16 @@ public func loggerConfig() {
     log.addDestination(console)
 }
 
+@discardableResult func performResponse<T: Codable>(
+    route: NautaRouter,
+    type: T.Type
+) async -> DataResponse<T, AFError> {
+    return await session.request(route)
+        .validate()
+        .serializingDecodable(type, decoder: JSONDecoder())
+        .response
+}
+
 let session: Session = {
     let configuration = URLSessionConfiguration.default
     configuration.timeoutIntervalForRequest = 30
