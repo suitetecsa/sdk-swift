@@ -1,7 +1,7 @@
 import Foundation 
 
 struct ValidateCode: Codable, Sendable {
-    var param: [Paramsss]
+    var param: [Param]
 
     enum CodingKeys: String, CodingKey {
         case param = "param"
