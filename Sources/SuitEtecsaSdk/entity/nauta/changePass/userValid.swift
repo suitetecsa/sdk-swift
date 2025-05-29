@@ -15,7 +15,7 @@ struct UserValid: Codable, Sendable {
 }
 
 struct DataResp: Codable, Sendable {
-    public let data: Datas 
+    let data: Datas 
 
     enum CodingKeys: String, CodingKey {
         case data = "data"
