@@ -1120,3 +1120,115 @@ let lists = """
       }
     }
     """
+
+// MARK: - Change Pass Json
+
+let changePassJson = """
+{
+    "param":[
+{
+    "name":"cuenta",
+    "value":"+5355627579"},
+{
+    "name":"password",
+    "value":"Carking*2023"
+},
+{
+    "name":"codigoActivacion",
+    "value":"AU9MI"
+}
+    ]
+}
+"""
+
+// MARK: - userValid Json
+
+let userValidJson = """
+    {
+    "param":[
+        {
+            "name":"usuarioPortal",
+            "value":"+5355627579"
+        }
+    ],
+    "idRequest":"6f56767ff346ad44cef872037749d5fbc6a05639",
+    "captchatext":"AR4RWU"
+}
+
+{
+    "data":{
+    "resultado":"OK"
+    }
+}
+"""
+
+// MARK: - numberValid Json
+
+let numberValidJson = """
+    {
+    "param":[
+        {
+            "name":"usuarioPortal",
+            "value":"+5355627579"
+        },{
+            "name":"codigoActivacion",
+            "value":"AU9MI"}
+    ]
+}
+"""
+
+// MARK: - Register User Json
+
+let registerUserJson = """
+    {
+        "param":[
+            {
+                "name":"via","value":"SERVICIO_MOVIL"
+            },
+            {
+                "name":"noIdentidad","value":"62113005642"
+            },
+        {
+            "name":"servicio","value":"+5354609692"
+        }
+        ],
+        "idRequest":"954fd6ae083d13cfa8ca1d3ba4fc964f2ec9e307",
+        "captchatext":"YTXRQG"
+    }
+"""
+
+// MARK: - Validate Code User
+
+let paramsJson = """
+    {
+        "param":[
+        {
+            "name":"identidad",
+            "value":"62113005642"
+        },{
+            "name":"codigoActivacion",
+            "value":"EYKQC"
+        }
+    ]}
+"""
+
+// MARK: - Create User
+
+let paramJson = """
+    {
+        "param":[
+            {
+                "name":"usuario",
+                "value":"+5354609692"
+            },{
+                "name":"password",
+                "value":"Omar*1962"
+            },{
+                "name":"noIdentidad",
+                "value":"62113005642"
+            }]
+    }
+"""
+
+
+

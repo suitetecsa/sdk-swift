@@ -2,7 +2,8 @@ import Alamofire
 import Foundation
 
 enum NautaRouter: URLRequestConvertible {
-
+  case registerAccount(params: RegisterUser)
+  case changePass(params: UserValid)
   case getCaptcha
   case login(parameters: String)
   case users(token: String, parameters: String)
@@ -14,6 +15,8 @@ enum NautaRouter: URLRequestConvertible {
   // Mark: - APIKey
   private var token: String? {
     switch self {
+    case .registerAccount: return nil
+    case .changePass: return nil
     case .getCaptcha: return nil
     case .login: return nil
     case .consults(let token, _), .operations(let token, _), .consultProccess(let token, _),
@@ -25,6 +28,8 @@ enum NautaRouter: URLRequestConvertible {
   // MARK: - HTTPMethod
   private var method: HTTPMethod {
     switch self {
+    case .registerAccount: return .get
+    case .changePass: return .get
     case .getCaptcha: return .get
     case .login, .consults, .operations, .consultProccess, .generateCode, .users: return .post
     }
@@ -32,6 +37,8 @@ enum NautaRouter: URLRequestConvertible {
 
   private var path: String {
     switch self {
+    case .registerAccount: return "/register"
+    case .changePass: return "/changepass"
     case .getCaptcha: return "/captcha/captcha"
     case .login: return "/login"
     case .users: return "/users"
@@ -44,6 +51,8 @@ enum NautaRouter: URLRequestConvertible {
 
   private var parameters: Data? {
     switch self {
+    case .registerAccount: return nil
+    case .changePass: return nil
     case .getCaptcha: return nil
     case .login(let params), .consults(_, let params), .operations(_, let params),
       .consultProccess(_, let params), .users(_, let params):

@@ -1,9 +1,9 @@
 import Foundation
 import Alamofire
 
-public struct LoginRequest: Codable, Sendable {
-    let username, password, accountType, idRequest: String
-    let captchatext: String
+struct LoginRequest: Codable, Sendable {
+    public let username, password, accountType, idRequest: String
+    public let captchatext: String
 
     enum CodingKeys: String, CodingKey {
         case username, password, idRequest, captchatext

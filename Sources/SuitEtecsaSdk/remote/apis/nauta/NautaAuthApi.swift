@@ -14,6 +14,7 @@ public class NautaAuthApi {
     }
 
     // MARK: - getCaptcha
+    
     public static func getCaptcha() async -> Result<CaptchaResponse, Error> {
         switch await performResponse(route: NautaRouter.getCaptcha, type: CaptchaResponse.self)
             .result
@@ -24,6 +25,7 @@ public class NautaAuthApi {
     }
 
     // MARK: - login
+  
     public static func login(
         username: String, password: String, captchaCode: String, idRequest: String
     ) async -> Result<LoginResponse, Error> {
@@ -42,6 +44,41 @@ public class NautaAuthApi {
         case .failure(let error): return Result.failure(error)
         case .success(let data):
             return Result.success(data.resp)
+        }
+    }
+    
+    // MARK: - change pass
+    
+    public static func changePass(params: [Param], idRequest: String, captchatext: String, data: DataResp) async -> Result<UserValid, Error> {
+        let jsonData = try! UserValid(
+            param: params,
+            idRequest: idRequest,
+            captchatext: captchatext,
+            data: data
+        )
+        switch await performResponse(
+            route: NautaRouter.changePass(params: jsonData),
+            type: UserValid.self
+        ).result {
+        case .failure(let error): return Result.failure(error)
+        case .success(let data): return Result.success(data)
+        }
+    }
+    
+    // MARK: - register account
+    
+    public static func registerAccount(param: [Param], captchatext: String, idRequest: String) async -> Result<RegisterUser, Error> {
+        let jsonData = try! RegisterUser(
+            param: param,
+            captchatext: captchatext,
+            idRequest: idRequest
+        )
+        switch await performResponse(
+            route: NautaRouter.registerAccount(params: jsonData),
+            type: RegisterUser.self
+        ).result {
+        case .failure(let error): return Result.failure(error)
+        case .success(let data): return Result.success(data)
         }
     }
 }

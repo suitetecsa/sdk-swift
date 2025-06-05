@@ -1,19 +1,14 @@
 import Foundation
 
 public struct RegisterUser: Codable, Sendable {
-    public var param: [Paramsssss]
-
+    public var param: [Param]
+    public var captchatext: String
+    public var idRequest: String
+    
     enum CodingKeys: String, CodingKey {
         case param = "param"
+        case captchatext = "captchatext"
+        case idRequest = "idRequest"
     }
 }
 
-public struct Paramsssss: Codable, Sendable {
-    public var name: String 
-    public var value: String 
-
-    enum CodingKeys: String, CodingKey {
-        case name = "name"
-        case value = "value"
-    }
-}

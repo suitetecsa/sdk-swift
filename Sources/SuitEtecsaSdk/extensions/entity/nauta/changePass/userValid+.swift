@@ -3,7 +3,7 @@ import Foundation
 extension UserValid {
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.param = try container.decode([Params].self, forKey: .param)
+        self.param = try container.decode([Param].self, forKey: .param)
         self.idRequest = try container.decode(String.self, forKey: .idRequest)
         self.captchatext = try container.decode(String.self, forKey: .captchatext)
         self.data = try container.decode(DataResp.self, forKey: .data)
@@ -17,21 +17,6 @@ extension UserValid {
         try container.encode(data, forKey: .data)
     }
 }
-
-extension Params {
-    public init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decode(String.self, forKey: .name)
-        self.value = try container.decode(String.self, forKey: .value)
-    }
-
-    public func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(name, forKey: .name)
-        try container.encode(value, forKey: .value)
-    }
-}
-
 extension DataResp {
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
