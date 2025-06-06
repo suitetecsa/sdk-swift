@@ -1154,12 +1154,14 @@ let userValidJson = """
     "idRequest":"6f56767ff346ad44cef872037749d5fbc6a05639",
     "captchatext":"AR4RWU"
 }
+"""
 
-{
-    "data":{
-    "resultado":"OK"
+let dataResponse = """
+    {
+        "data":{
+        "resultado":"OK"
+        }
     }
-}
 """
 
 // MARK: - numberValid Json

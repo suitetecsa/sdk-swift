@@ -6,7 +6,6 @@ extension UserValid {
         self.param = try container.decode([Param].self, forKey: .param)
         self.idRequest = try container.decode(String.self, forKey: .idRequest)
         self.captchatext = try container.decode(String.self, forKey: .captchatext)
-        self.data = try container.decode(DataResp.self, forKey: .data)
     }
 
     public func encode(to encoder: any Encoder) throws {
@@ -14,9 +13,9 @@ extension UserValid {
         try container.encode(param, forKey: .param)
         try container.encode(idRequest, forKey: .idRequest)
         try container.encode(captchatext, forKey: .captchatext)
-        try container.encode(data, forKey: .data)
     }
 }
+
 extension DataResp {
     public init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

@@ -14,16 +14,16 @@ final class ChangePassJsonTests: XCTestCase {
     func testUserValidJson() throws {
         do {
             let validResponseJson = try newJSONDecoder().decode(UserValid.self, from: userValidJson.data(using: .utf8)!)
+            let dataJson = try newJSONDecoder().decode(DataResp.self, from: dataResponse.data(using: .utf8)!)
             
-            if validResponseJson.data.data.resultado == "ok" {
-                print("Respuesta del JSON: \(validResponseJson)")
-                
-                XCTAssertEqual(validResponseJson.captchatext, "captchatext")
-                XCTAssertEqual(validResponseJson.idRequest, "idRequest")
-                XCTAssertEqual(validResponseJson.param, [Param(name: "", value: "")])
-            } else {
-                XCTFail("No hay respuesta el JSON")
-            }
+            print("Respuesta del JSON: \(validResponseJson)")
+            
+            XCTAssertEqual(validResponseJson.captchatext, "AR4RWU")
+            XCTAssertEqual(validResponseJson.idRequest, "6f56767ff346ad44cef872037749d5fbc6a05639")
+            XCTAssertEqual(validResponseJson.param, [Param(name: "usuarioPortal", value: "+5355627579")])
+            
+            print("Respuesta del JSON: \(dataJson)")
+            XCTAssertEqual(dataJson.data.resultado, "OK")
         } catch let error {
             print("Error en la respuesta del JSON: \(error.localizedDescription)")
         }

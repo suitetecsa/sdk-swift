@@ -50,11 +50,10 @@ public class NautaAuthApi {
     // MARK: - change pass
     
     public static func changePass(params: [Param], idRequest: String, captchatext: String, data: DataResp) async -> Result<UserValid, Error> {
-        let jsonData = try! UserValid(
+        let jsonData = UserValid(
             param: params,
             idRequest: idRequest,
             captchatext: captchatext,
-            data: data
         )
         switch await performResponse(
             route: NautaRouter.changePass(params: jsonData),
@@ -68,7 +67,7 @@ public class NautaAuthApi {
     // MARK: - register account
     
     public static func registerAccount(param: [Param], captchatext: String, idRequest: String) async -> Result<RegisterUser, Error> {
-        let jsonData = try! RegisterUser(
+        let jsonData = RegisterUser(
             param: param,
             captchatext: captchatext,
             idRequest: idRequest

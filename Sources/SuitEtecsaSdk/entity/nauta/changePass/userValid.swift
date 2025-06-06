@@ -3,14 +3,12 @@ import Foundation
 public struct UserValid: Codable, Sendable {
     public var param: [Param]
     public var idRequest: String 
-    public var captchatext: String 
-    public var data: DataResp 
+    public var captchatext: String
 
     enum CodingKeys: String, CodingKey {
         case param = "param"
         case idRequest = "idRequest"
         case captchatext = "captchatext"
-        case data 
     }
 }
 
