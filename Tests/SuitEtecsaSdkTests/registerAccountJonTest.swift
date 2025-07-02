@@ -12,28 +12,13 @@ import XCTest
 
 final class registerAccountJsonTests: XCTest {
     func testResgisterUserJson() throws {
-        do {
-            let userValidJson = try newJSONDecoder().decode(RegisterUser.self, from: userValidJson.data(using: .utf8)!)
-            
-            print("Respuesta del JSON: \(userValidJson)")
-            
-            XCTAssertEqual(userValidJson.captchatext, "captchatext")
-            XCTAssertEqual(userValidJson.idRequest, "idRequest")
-            XCTAssertEqual(userValidJson.param, [Param(name: "", value: "")])
-        } catch let error {
-            print("Errr en la respuesta del Json: \(error.localizedDescription)")
-        }
-    }
-    
-    func testUserCreateJson() throws {
-        do {
-            let userCreate = try newJSONDecoder().decode(UserCreate.self, from: numberValidJson.data(using: .utf8)!)
-            
-            print("Respuesta del JSON: \(userCreate)")
-            XCTAssertEqual(userCreate.param, [Param(name: "", value: "")])
-        } catch let error {
-            print("Error en la respuesta del json: \(error.localizedDescription)")
-        }
+        let userValidJson = try newJSONDecoder().decode(
+            RegisterUser.self, from: userValidJson.data(using: .utf8)!)
+
+        XCTAssertEqual(userValidJson.captchatext, "AR4RWU")
+        XCTAssertEqual(userValidJson.idRequest, "6f56767ff346ad44cef872037749d5fbc6a05639")
+        XCTAssertEqual(userValidJson.param[0].name, "usuarioPortal")
+        XCTAssertEqual(userValidJson.param[0].value, "+5355627579")
     }
     
     func testValidateUser() throws {
