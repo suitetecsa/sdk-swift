@@ -37,13 +37,10 @@ final class registerAccountJsonTests: XCTest {
     }
     
     func testValidateUser() throws {
-        do {
-            let validateUser = try newJSONDecoder().decode(ValidateCode.self, from: numberValidJson.data(using: .utf8)!)
-            
-            print("Respuesta del JSON: \(validateUser)")
-            XCTAssertEqual(validateUser.param, [Param(name: "", value: "")])
-        } catch let error {
-            print("Error en la respuesta del JSON: \(error.localizedDescription)")
-        }
+        let validateUser = try newJSONDecoder().decode(
+            ValidateCode.self, from: numberValidJson.data(using: .utf8)!)
+
+        XCTAssertEqual(validateUser.param[1].name, "codigoActivacion")
+        XCTAssertEqual(validateUser.param[1].value, "AU9MI")
     }
 }
