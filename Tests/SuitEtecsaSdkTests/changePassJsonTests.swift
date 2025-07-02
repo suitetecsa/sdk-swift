@@ -37,16 +37,15 @@ final class ChangePassJsonTests: XCTestCase {
     }
     
     func testChangePassJson() throws {
-        do {
-            let changePassJson = try newJSONDecoder().decode(ChangePass.self, from: changePassJson.data(using: .utf8)!)
-            
-            if changePassJson.param.isEmpty {
-                XCTFail("Error en la respuesta del JSON")
-            } else {
-                print("Respuesta del JSON: \(changePassJson)")
-            }
-        } catch let error {
-            print("Error en la respuesta del JSON: \(error.localizedDescription)")
-        }
+        let changePassJson = try newJSONDecoder().decode(
+                ChangePass.self, from: changePassJson.data(using: .utf8)!)
+
+            XCTAssertEqual(changePassJson.param.count, 3)
+            XCTAssertEqual(changePassJson.param[0].name, "cuenta")
+            XCTAssertEqual(changePassJson.param[0].value, "+5355627579")
+            XCTAssertEqual(changePassJson.param[1].name, "password")
+            XCTAssertEqual(changePassJson.param[1].value, "Carking*2023")
+            XCTAssertEqual(changePassJson.param[2].name, "codigoActivacion")
+            XCTAssertEqual(changePassJson.param[2].value, "AU9MI")
     }
 }
