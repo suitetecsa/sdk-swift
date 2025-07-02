@@ -43,7 +43,7 @@ public class NautaAuthApi {
         let jsonData = UserValid(
             param: params,
             idRequest: idRequest,
-            captchatext: captchatext,
+            captchatext: captchatext
         )
         switch await performResponse(
             route: NautaRouter.changePass(params: jsonData),
