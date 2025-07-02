@@ -20,7 +20,6 @@ final class RegisterAccountJsonTests: XCTestCase {
         XCTAssertEqual(userValidJson.param[0].name, "usuarioPortal")
         XCTAssertEqual(userValidJson.param[0].value, "+5355627579")
     }
-    
     func testValidateUser() throws {
         let validateUser = try newJSONDecoder().decode(
             ValidateCode.self, from: numberValidJson.data(using: .utf8)!)
