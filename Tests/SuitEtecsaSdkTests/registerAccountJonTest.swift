@@ -10,7 +10,7 @@ import XCTest
 
 @testable import SuitEtecsaSdk
 
-final class registerAccountJsonTests: XCTest {
+final class RegisterAccountJsonTests: XCTestCase {
     func testResgisterUserJson() throws {
         let userValidJson = try newJSONDecoder().decode(
             RegisterUser.self, from: userValidJson.data(using: .utf8)!)
