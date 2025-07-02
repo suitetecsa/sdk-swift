@@ -35,7 +35,6 @@ final class ChangePassJsonTests: XCTestCase {
         XCTAssertEqual(validCodeJson.param[1].name, "codigoActivacion")
         XCTAssertEqual(validCodeJson.param[1].value, "AU9MI")
     }
-    
     func testChangePassJson() throws {
         let changePassJson = try newJSONDecoder().decode(
                 ChangePass.self, from: changePassJson.data(using: .utf8)!)
