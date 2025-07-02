@@ -27,7 +27,6 @@ final class ChangePassJsonTests: XCTestCase {
         print("Respuesta del JSON: \(dataJson)")
         XCTAssertEqual(dataJson.data.resultado, "OK")
     }
-    
     func testnumberValidJson() throws {
         let validCodeJson = try newJSONDecoder().decode(
                 ValidateCode.self, from: numberValidJson.data(using: .utf8)!)
