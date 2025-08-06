@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.10.2")),
-        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.9.6"),
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.10.1"),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMajor(from: "1.9.0")),
         .package(url: "https://github.com/SwiftyBeaver/SwiftyBeaver.git", .upToNextMajor(from: "2.1.1"))
     ],
